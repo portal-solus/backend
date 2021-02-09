@@ -35,13 +35,14 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'solus.netlify.app',
-    user_name:            'jotaf.daniel@gmail.com',
-    password:             Rails.application.credentials.mail_password_dev,
-    authentication:       'plain',
-    enable_starttls_auto: true }
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'solus.netlify.app',
+    user_name: 'jotaf.daniel@gmail.com',
+    password: Rails.application.credentials.mail_password_dev,
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

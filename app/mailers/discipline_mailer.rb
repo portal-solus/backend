@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DisciplineMailer < ApplicationMailer
   default from: 'joao.daniel@usp.br',
           to: 'joao.daniel@usp.br'
