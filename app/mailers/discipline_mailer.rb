@@ -5,5 +5,6 @@ class DisciplineMailer < ApplicationMailer
   def warnings
     @warnings = params[:warnings]
     @sheet_url = 'https://google.com'
+    mail(subject: 'Solus - Alertas de Disciplinas')
   end
 end
