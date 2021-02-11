@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Disciplinas - Portal Solus - Aviso semanal sobre dados</h1>
+
+  <p>Alguns dados a respeito de <strong>Disciplinas</strong> podem estar incorretos:</p>
+
+  <ul>
+    <% @warnings.each do |warning| %>
+      <li><%= warning %></li>
+    <% end %>
+  </ul>
+
+  <p>
+    A planilha para correção é 
+    <a href="<%= @sheet_url %>">esta</a>
+  </p>
+</body>
+</html>

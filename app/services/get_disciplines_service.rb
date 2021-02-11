@@ -5,7 +5,7 @@ require 'json'
 
 class GetDisciplinesService
   def self.run
-    request && parse && cleanup
+    request && parse && cleanup && report
   end
 
   def self.request
@@ -21,16 +21,23 @@ class GetDisciplinesService
   end
 
   def self.parse
+    @@warnings = []
     raw_disciplines = @@data.slice(1, @@data.size - 1)
     raw_disciplines.each_with_index do |row, index|
       Discipline.create_from(row)
     rescue Mongoid::Errors::Validations => e
-      services_logger.debug "[GetDisciplinesService::parse - Linha: #{index + 2}] #{e}"
+      warning = "Linha: #{index + 2} - #{e}"
+      services_logger.debug "[GetDisciplinesService::parse] - #{warning}"
+      @@warnings << warning
     end
   end
 
   def self.cleanup
     Discipline.where({ created_at: { '$lt': 1.hour.ago } }).delete_all
+  end
+
+  def self.report
+    DisciplineMailer.with(warnings: @@warnings).warnings.deliver_now
   end
 
   def self.base_url
